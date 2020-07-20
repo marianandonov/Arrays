@@ -1,0 +1,55 @@
+using System;
+
+namespace MaxSumK
+{
+    class MaxSumK
+    {
+        static void Main(string[] args)
+        {
+            int sum = 0, n = 0, k = 0;
+
+            Console.Write("N: ");
+            n = tryParse(n);
+            Console.Write("K: ");
+            k = tryParse(k);
+
+            int[] arr = new int[n];
+
+            for (int i = 0; i < n; i++)
+            {
+                Console.Write($"({i + 1}) ");
+                arr[i] = Int32.Parse(Console.ReadLine());
+            }
+
+            Array.Sort(arr, (a, b) => b.CompareTo(a));
+
+            for (int i = 0; i < k; i++)
+            {
+                sum += arr[i];
+            }
+
+            Console.WriteLine("\nBiggest sum is {0}", sum);
+        }
+
+        static int tryParse(int num)
+        {
+            bool tryParse = false;
+
+            do
+            {
+                Console.Write("Enter a value: ");
+                tryParse = int.TryParse(Console.ReadLine(), out num);
+                if (tryParse == true)
+                {
+                    return num;
+                }
+                else
+                {
+                    Console.WriteLine("Try again!");
+                }
+            } while (tryParse == false);
+
+            return 1;
+        }
+    }
+}

@@ -1,0 +1,65 @@
+using System;
+
+namespace MaxUpTrial
+{
+    class MaxUpTrial
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("(Length) ");
+            int length = 0;
+            length = tryParse(length);
+
+            int[] arr = new int[length];
+            int sames = 1, bestSames = 1, bestStart = 0, lastElement = 0;
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                Console.Write($"({i + 1}) ");
+                arr[i] = tryParse(arr[i]);
+            }
+
+            for (int i = 0; i < arr.Length - 1; i++)
+            {
+                if (arr[i] + 1 == arr[i + 1])
+                {
+                    sames++;
+                    if (sames > bestSames)
+                    {
+                        bestSames = sames;
+                        lastElement = i + 1;
+                        bestStart = lastElement - bestSames + 1;
+                    }
+                }
+                else sames = 1;
+            }
+
+            for (int i = bestStart; i < bestSames + bestStart; i++)
+            {
+                Console.Write("{0}, ", arr[i]);
+            } 
+
+        }
+
+        static int tryParse(int num)
+		{
+			bool tryParse = false;
+
+			do
+			{
+				Console.Write("Enter a value: ");
+				tryParse = int.TryParse(Console.ReadLine(), out num);
+				if (tryParse == true)
+				{
+					return num;
+				}
+				else
+				{
+					Console.WriteLine("Try again!");
+				}
+			} while (tryParse == false);
+
+			return 1;
+		}
+	}
+}

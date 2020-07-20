@@ -1,0 +1,71 @@
+using System;
+
+namespace SelectionSort
+{
+    class SelectionSort
+    {
+        static void Main(string[] args)
+        {
+            int n = 0;
+            Console.Write("(Length) ");
+            n = tryParse(n);
+            int[] arr = new int[n];
+
+            for(int i = 0; i < arr.Length; i++)
+            {
+                Console.Write($"({i + 1}) ");
+                arr[i] = tryParse(arr[i]);
+            }
+
+            selectionSort(arr);
+
+            foreach(int i in arr)
+            {
+                Console.Write(i + " ");
+            }
+
+        }
+
+        static int tryParse(int num)
+        {
+            bool tryParse = false;
+
+            do
+            {
+                Console.Write("Enter a value: ");
+                tryParse = int.TryParse(Console.ReadLine(), out num);
+                if (tryParse == true)
+                {
+                    return num;
+                }
+                else
+                {
+                    Console.WriteLine("Try again!");
+                }
+            } while (tryParse == false);
+
+            return 1;
+        }
+
+        static void selectionSort(int[] arr)
+        {
+            int n = arr.Length;
+
+            for (int i = 0; i < n - 1; i++)
+            {
+                int min_idx = i;
+                for (int j = i + 1; j < n; j++) {
+                    if (arr[j] < arr[min_idx])
+                    {
+                        min_idx = j;
+                    }
+                       
+                }
+
+                int temp = arr[min_idx];
+                arr[min_idx] = arr[i];
+                arr[i] = temp;
+            }
+        }
+    }
+}

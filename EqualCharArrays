@@ -1,0 +1,70 @@
+using System;
+
+namespace EqualCharArrays
+{
+    class EqualCharArrays
+    {
+        static void Main(string[] args)
+        {
+            bool arrayEqual = true;
+            char n = 'a';
+            char m = 'b';
+            char[] arr1 = new char[5];
+            char[] arr2 = new char[5];
+
+            Console.WriteLine("Enter chars for Arr1!");
+            for(int i = 0; i < arr1.Length; i++)
+            {
+                arr1[i] = tryParse(n);
+            }
+            Console.WriteLine("Enter chars for Arr2!");
+            for (int i = 0; i < arr2.Length; i++)
+            {
+                arr2[i] = tryParse(m);
+            }
+
+            for (int i = 0; i < arr1.Length; i++)
+            {
+                if (arr1[i] < arr2[i])
+                {
+                    Console.WriteLine("First array is lexicographicaly first.");
+                    arrayEqual = false;
+                    break;
+                }
+                if (arr1[i] > arr2[i])
+                {
+                    Console.WriteLine("Second array is lexicographicaly first.");
+                    arrayEqual = false;
+                    break;
+                }
+            }
+
+            if (arrayEqual)
+            {
+                Console.WriteLine("Arrays are lexicographicaly equal.");
+            }
+
+        }
+
+        static char tryParse(char c)
+        {
+            bool tryParse = false;
+
+            do
+            {
+                Console.Write("Enter a value: ");
+                tryParse = char.TryParse(Console.ReadLine(), out c);
+                if (tryParse == true)
+                {
+                    return c;
+                }
+                else
+                {
+                    Console.WriteLine("Try again!");
+                }
+            } while (tryParse == false);
+
+            return c;
+        }
+    }
+}

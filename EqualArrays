@@ -1,0 +1,73 @@
+using System;
+
+namespace EqualArrays
+{
+    class EqualArrays
+    {
+        static void Main(string[] args)
+        {
+            int n = 0, m = 0;
+
+            Console.Write("(N) ");
+            n = tryParse(n);
+            Console.Write("(M) ");
+            m = tryParse(m);
+
+            int[] arr1 = new int[n];
+            int[] arr2 = new int[m];
+
+            if (arr1.Length == arr2.Length)
+            {
+                Console.WriteLine("The arrays are equal");
+                Console.WriteLine("Enter values for arr1!");
+                for (int i = 0; i < arr1.Length; i++)
+                {
+                    arr1[i] = tryParse(n);
+                }
+                Console.WriteLine("Enter values for arr2!");
+                for(int i = 0; i < arr2.Length; i++)
+                {
+                    arr2[i] = tryParse(m);
+                }
+
+                for(int i = 0; i < arr1.Length; i++)
+                {
+                    if(arr1[i] == arr2[i])
+                    {
+                        Console.WriteLine($"The numbers {arr1[i]} and {arr2[i]} are equal!");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"The numbers {arr1[i]} and {arr2[i]} are not equal!");
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("The arrays are not equal!");
+            }
+
+        }
+
+        static int tryParse(int num)
+        {
+            bool tryParse = false;
+
+            do
+            {
+                Console.Write("Enter a value: ");
+                tryParse = int.TryParse(Console.ReadLine(), out num);
+                if (tryParse == true)
+                {
+                    return num;
+                }
+                else
+                {
+                    Console.WriteLine("Try again!");
+                }
+            } while (tryParse == false);
+
+            return 1;
+        }
+    }
+}

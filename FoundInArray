@@ -1,0 +1,63 @@
+using System;
+
+namespace FoundInArray
+{
+    class FoundInArray
+    {
+        static void Main(string[] args)
+        {
+            int counter = 0, tempCounter = 1, foundNumber = 0, length = 0;
+            Console.Write("(Length) ");
+            length = tryParse(length);
+            int[] arr = new int[length];
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                Console.Write($"({i + 1}) ");
+                arr[i] = tryParse(arr[i]);
+            }
+
+            Array.Sort(arr);
+
+            for (int i = 0; i < length - 1; i++)
+            {
+                if (arr[i] == arr[i + 1])
+                {
+                    tempCounter++;
+                }
+                else
+                {
+                    tempCounter = 1;
+                }
+                if (tempCounter > counter)
+                {
+                    counter = tempCounter;
+                    foundNumber = arr[i];
+                }
+            }
+
+            Console.WriteLine($"{foundNumber} was found {counter} times.");
+        }
+
+        static int tryParse(int num)
+        {
+            bool tryParse = false;
+
+            do
+            {
+                Console.Write("Enter a value: ");
+                tryParse = int.TryParse(Console.ReadLine(), out num);
+                if (tryParse == true)
+                {
+                    return num;
+                }
+                else
+                {
+                    Console.WriteLine("Try again!");
+                }
+            } while (tryParse == false);
+
+            return 1;
+        }
+    }
+}

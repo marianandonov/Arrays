@@ -1,0 +1,56 @@
+using System;
+
+namespace BinarySearch
+{
+    class BinarySearch
+    {
+        static void Main(string[] args)
+        {
+
+            int n = 0;
+            n = tryParse("Enter array length: ", n);
+
+            int[] arr = new int[n];
+
+            for(int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = tryParse($"{i}: ", arr[i]);
+            }
+
+            Array.Sort(arr);
+
+            n = tryParse("Enter the number you are searching for: ", n);
+            int res = Array.BinarySearch(arr, n);
+
+            if(res >= 0)
+            {
+                Console.WriteLine($"The number {n} was found at index {res}!");
+            } else
+            {
+                Console.WriteLine("The number wasn't found!");
+            }
+
+        }
+
+        static int tryParse(string message, int num)
+        {
+            bool tryParse = false;
+
+            do
+            {
+                Console.Write(message);
+                tryParse = int.TryParse(Console.ReadLine(), out num);
+                if (tryParse == true)
+                {
+                    return num;
+                }
+                else
+                {
+                    Console.WriteLine("Try again!");
+                }
+            } while (tryParse == false);
+
+            return 1;
+        }
+    }
+}
